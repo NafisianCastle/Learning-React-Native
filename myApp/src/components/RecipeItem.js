@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     }
 });
 export default class RecipeItem extends Component{
+    goToDetails =()=>{
+        const {navigation,item} = this.props;
+        navigation.navigate('Details',{item:item});
+    }
     render(){
         const {item} = this.props;
         return(
@@ -21,22 +25,18 @@ export default class RecipeItem extends Component{
                     resizeMode="cover" 
                     source={{uri:item.image_url}}
                 />
-                <View style={{marginVertical:22,marginHorizontal:11}}>
+                <View style={{marginVertical:20,marginHorizontal:10}}>
                     <View style={styles.details}>
-                        <Text style={{fontSize:18,fontWeight:'bold',color:'#666'}}>
+                        <Text style={{fontSize:18,fontWeight:'bold',color:'black'}}>
                             {item.title}
                         </Text>
-                        <Text style={{color:'#666'}}>
-                            <Text style={{fontWeight:'italic'}}>
-                                published by 
-                            </Text>
-                            <Text style={{fontStyle:'underline', fontWeight:'bold'}}>
-                                {item.publisher}
-                            </Text>
-                        </Text>
                     </View>
+                        <Text style={{color:'#666'}}>
+                            <Text style={{fontStyle:'italic'}}>published by </Text>
+                            <Text style={{ fontWeight:'bold'}}>{item.publisher}</Text>
+                        </Text>
                 </View>
-                <Button title={'View Details'}/>
+                <Button onPressButton={this.goToDetails} title={'View Details'}/>
             </Card>
             
         )

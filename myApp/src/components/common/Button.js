@@ -15,9 +15,10 @@ const styles = StyleSheet.create({
 
 export default class Button extends Component{
     render(){
+        const {onPressButton,title}=this.props;
         return(
-            <TouchableOpacity style={styles.wrapper}>
-                <Text style={styles.btntxt}>{this.props.title}</Text>
+            <TouchableOpacity onPress={onPressButton} style={styles.wrapper}>
+                <Text style={styles.btntxt}>{title}</Text>
             </TouchableOpacity>
         )
     }

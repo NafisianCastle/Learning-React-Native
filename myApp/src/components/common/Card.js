@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
 
         borderRadius:8,
         borderWidth:1,
-        borderColor:#ddd,
-        backgroundColor:'orange',
+        borderColor:'#ddd',
+        backgroundColor:'white',
 
         overflow:'hidden'
 
