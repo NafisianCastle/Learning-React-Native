@@ -307,13 +307,13 @@ const DATA = [
 ];
 
 export default class HomeScreen extends Component{
-    static navigationOptions ={
+    static navigationOptions ={ 
         title :'Home',
 	};
 	
 	renderRecipeItem =(item,index) =>{
 		return(
-			<RecipeItem item={item}/>
+			<RecipeItem item={item}/> 
 		)
 	}
 
