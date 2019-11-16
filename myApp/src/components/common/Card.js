@@ -30,5 +30,7 @@ const styles = StyleSheet.create({
         borderColor:#ddd,
         backgroundColor:'orange',
 
+        overflow:'hidden'
+
     }
   });
