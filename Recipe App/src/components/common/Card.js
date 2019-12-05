@@ -1,14 +1,6 @@
 import React,{Component} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-
-export default class Card extends Component{
-    render(){
-       const {children}=this.props;
-       return <View style={styles.wrapper}>{children}</View>
-    }
-}
-
 const styles = StyleSheet.create({
     wrapper:{
         //IOS
@@ -34,3 +26,11 @@ const styles = StyleSheet.create({
 
     }
   });
+
+export default class Card extends Component{
+    render(){
+       const {children}=this.props;
+       return <View style={styles.wrapper}>{children}</View>
+    }
+}
+
