@@ -20,20 +20,18 @@ export default class DetailsScreen extends Component{
         const item = navigation.getParam('item',{});
         //console.log('item in details screen',item);
         return(
-                <View style={{flex:1,alignItem:'center',padding:10}}>
+                <View style={{flex:1,alignItem:'center',padding:20}}>
                     <Image
                         style={{height:300,borderRadius:7}} 
                         resizeMode="cover" 
                         source={{uri:item.image_url}}
                     />
                     <Text style={{fontSize:17,padding:9}}>This recipe is published by {item.publisher}</Text>
-                    <Text style={{color:'blue'}}>   {item.publisher_url}.</Text>
                     <Text style={{fontSize:17,padding:9}}>Its current social rank is {item.social_rank}.</Text>
                     <Text style={{fontSize:17,padding:9}}>Full recipe details is in the given link :</Text>
-                    <TouchableOpacity onPress={this.goToUrl(item.source_url)}>
-                        <Text style={{color:'blue'}}>   {item.source_url}</Text>
-                    </TouchableOpacity>
-                    
+                    <TouchableOpacity onPress={() => this.goToUrl(item.source_url)}>
+                          <Text style={{color:'blue'}}> {item.source_url}</Text>
+                    </TouchableOpacity>  
                 </View>
             
         )

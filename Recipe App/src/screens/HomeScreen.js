@@ -198,7 +198,6 @@ export default class HomeScreen extends Component{
 								onChangeText = {text =>{
 									this.searchFilter(text)
 								}}
-								//value = {value}
 							/>
 						</View>
 					}
