@@ -20,7 +20,7 @@ export default class DetailsScreen extends Component{
         const item = navigation.getParam('item',{});
         //console.log('item in details screen',item);
         return(
-                <View style={{flex:1,alignItem:'center',padding:10,backgroundColor:'#ffb366'}}>
+                <View style={{flex:1,alignItem:'center',padding:10}}>
                     <Image
                         style={{height:300,borderRadius:7}} 
                         resizeMode="cover" 

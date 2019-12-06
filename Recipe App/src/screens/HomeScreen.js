@@ -110,7 +110,7 @@ const DATA = [
 */
 export default class HomeScreen extends Component{
     static navigationOptions ={ 
-        title :'Recipe List',
+        title :'Recipe List'
 	};
 	
 	constructor(props){
@@ -129,8 +129,10 @@ export default class HomeScreen extends Component{
 			this.setState({
 				loading:false,
 				data: responseJson
-			})
-		};
+			});
+			this.arrayHolder = responseJson.recipes;
+		});
+		
 	}
 
 	renderRecipeItem =({ item,index}) =>{
@@ -139,29 +141,47 @@ export default class HomeScreen extends Component{
 			<RecipeItem navigation={navigation} item={item}/>
 		);
 	}
+
 	searchFilter = (text) =>{
 		this.setState({
 			searchTerm: text
 		});
+
+		const filteredData = this.arrayHolder.filter(item =>{
+			let title = item.title.toUpperCase();
+			let userTypedData = text.toUpperCase();
+
+			return title.indexOf(userTypedData) > -1
+		})
+
+		let newData = {
+			count:filteredData.length,
+			recipes:filteredData
+		} 
+
+		this.setState({
+			data : newData
+		})
 	}
+
     render(){
 		const {loading,data} = this.state;
 		if(loading){
 			return(
 				<View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-					<ActivityIndicator size="large",color="orange"/>
+					<ActivityIndicator size="large" color="orange"/>
 				</View>
 			)
 		}
         return(
-            <View>
+            <View >
                 <FlatList
-                    data ={data ? data.recipes : []}
+                    data ={ data.recipes}
                     renderItem ={this.renderRecipeItem}
                     keyExtractor={(item,index)=>item.recipe_id}
 					contentContainerStyle={{marginTop:20}}
 					ListHeaderComponent={
-						<View>
+						<View >
 							<Text style={{padding:23,fontSize:17,fontWeight:'bold',fontStyle:'italic'}}>
 								Explore {data.count} Recipes...
 							</Text>
@@ -178,7 +198,7 @@ export default class HomeScreen extends Component{
 								onChangeText = {text =>{
 									this.searchFilter(text)
 								}}
-								value = {value}
+								//value = {value}
 							/>
 						</View>
 					}
