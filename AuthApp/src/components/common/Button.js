@@ -4,7 +4,8 @@ import { View, Text, StyleSheet,TouchableOpacity } from 'react-native';
 const styles = StyleSheet.create({
     wrapper:{
         padding :15,
-        backgroundColor:'orange'
+        backgroundColor:'orange',
+        marginBottom:28
     },
     btntxt:{
         color:'#fff', 
