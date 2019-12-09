@@ -112,7 +112,6 @@ export default class HomeScreen extends Component{
     static navigationOptions ={ 
         title :'Recipe List'
 	};
-	
 	constructor(props){
 		super(props);
 		this.state ={
@@ -121,7 +120,6 @@ export default class HomeScreen extends Component{
 			searchTerm : ''
 		}
 	}
-
 	componentDidMount(){
 		fetch('https://www.food2fork.com/api/search?key=b8a8cac975085b642a79083fd8e83a56')
 		.then(response =>response.json())

@@ -21,7 +21,7 @@ export default class RecipeItem extends Component{
         return(
             <Card>
                 <Image 
-                    style={{flex:1,height:200,borderTopLeftRadius:7,borderTopRightRadius:7}} 
+                    style={{flex:1,height:250,width:'100%',borderTopLeftRadius:7,borderTopRightRadius:7}} 
                     resizeMode="cover" 
                     source={{uri:item.image_url}}
                 />
