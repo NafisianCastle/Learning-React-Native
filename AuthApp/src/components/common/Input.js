@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet,TextInput } from 'react-native';
 
-const styles = StyleSheet.create({
-    
-});
-
-export default class Button extends Component{
+export default class Input extends Component{
     render(){
         const {placeholder,handleinput,secureTextEntry} = this.props;
         return(
             <TextInput
-                style={{height:50,borderRadius: 8,padding:10,borderBottomColor:'orange',borderBottomWidth:2}}
+                style={{
+                    height:50,
+                    borderRadius: 8,
+                    padding:10,
+                    borderColor:'orange',
+                    borderBottomWidth:2,
+                    marginBottom:25
+                }}
                 placeholder={placeholder}
                 onChangeText={handleinput}
                 secureTextEntry={secureTextEntry}

@@ -153,17 +153,14 @@ export default class HomeScreen extends Component{
 
 			return title.indexOf(userTypedData) > -1
 		})
-
 		let newData = {
 			count:filteredData.length,
 			recipes:filteredData
 		} 
-
 		this.setState({
 			data : newData
 		})
 	}
-
     render(){
 		const {loading,data} = this.state;
 		if(loading){

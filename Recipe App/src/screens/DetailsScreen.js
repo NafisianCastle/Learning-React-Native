@@ -6,7 +6,7 @@ import { Linking } from 'expo';
 
 export default class DetailsScreen extends Component{
     static navigationOptions =({navigation})=>{ 
-       const item = navigation.getParam(item,{});
+       const item = navigation.getParam('item',{});
        let title = item.title;
        return{
            title: title 
