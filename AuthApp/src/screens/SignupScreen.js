@@ -120,7 +120,7 @@ export default class SignupScreen extends Component {
               customStyle={{flex:1}} 
               handleInput={text => this.handleInput('gender',text)} 
               placeholder='Gender'
-              />
+            />
           </View>
           {loading ? <ActivityIndicator size='small'/>: <Button onPressButton={this.signUp} title="Sign up"/>}
       </View>
