@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 import { StyleSheet, Text, View ,Image,TouchableOpacity} from 'react-native';
 import Card from './common/Card';
-import { bold, italic, underline } from 'ansi-colors';
 import Button from './common/Button';
 
 const styles = StyleSheet.create({
