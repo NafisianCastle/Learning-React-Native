@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, ActivityIndicator } from 'react-native'
 import * as firebase from 'firebase'
 import Input from './../components/common/Input';
 import Button from './../components/common/Button';
@@ -17,10 +17,19 @@ export default class SigninScreen extends Component {
   signIn = () =>{
     const {email,password} = this.state;
 
+    this.setState({
+      loading:true
+    })
+
     firebase
       .auth()
       .signInWithEmailAndPassword(email,password)
       .then(user =>{
+          this.setState(
+            {
+              loading:false
+            })
+          console.log('user',user)
           this.props.navigation.navigate('Profile')
     })
   }
@@ -34,21 +43,19 @@ export default class SigninScreen extends Component {
   render() {
     const{loading} = this.state;
     return (
-      <View style={{flex:1}}>
-        <Input 
+      <View>
+          <Input 
             onBlur={this.checkEmail} 
             handleInput={text => this.handleInput('email',text)} 
             placeholder='Email'
           />
-            {emailError && <Text style={{fontSize:14,color:'red'}}>{emailError}</Text>}
-
           <Input 
             handleInput={text =>  this.handleInput('password',text)} 
             placeholder='Password' 
             secureTextEntry={true}
           />
+              {loading ? <ActivityIndicator size='small'/>: <Button onPressButton={this.signIn} title="Sign in"/>}
       </View>
-          {loading ? <ActivityIndicator size='small'/>: <Button onPressButton={this.signUp} title="Sign in"/>}
     )
   }
 }

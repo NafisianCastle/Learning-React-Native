@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View,ActivityIndicator } from 'react-native'
+import { Text, View, ActivityIndicator } from 'react-native'
 import Input from '../components/common/Input'
 import Button from '../components/common/Button'
 import * as firebase from 'firebase'
@@ -76,7 +76,7 @@ export default class SignupScreen extends Component {
     }
   }
   render() {
-    const {emailError} = this.state;
+    const {emailError,loading} = this.state;
     return (
       <View style={{flex:1,marginTop:50,marginHorizontal:20}}>
 
@@ -122,7 +122,9 @@ export default class SignupScreen extends Component {
               placeholder='Gender'
             />
           </View>
+
           {loading ? <ActivityIndicator size='small'/>: <Button onPressButton={this.signUp} title="Sign up"/>}
+          
       </View>
     )
   }
