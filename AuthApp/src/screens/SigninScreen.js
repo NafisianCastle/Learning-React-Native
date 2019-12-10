@@ -4,7 +4,7 @@ export default class SigninScreen extends Component {
   render() {
     return (
       <View style={{flex:1}}>
-
+        <Text>Signin Screen</Text>
       </View>
     )
   }

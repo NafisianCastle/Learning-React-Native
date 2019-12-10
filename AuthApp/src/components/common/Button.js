@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
     wrapper:{
         padding :15,
         backgroundColor:'orange',
-        marginBottom:28
+        marginBottom:28,
+        borderRadius:8
     },
     btntxt:{
         color:'#fff', 

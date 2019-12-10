@@ -4,7 +4,7 @@ import Button from './../components/common/Button';
 
 export default class LandingScreen extends Component {
     static navigationOptions = {
-        header: null
+        title: 'Authentication'
     }
     signIn = () =>{
         this.props.navigation.navigate('Signin');
@@ -18,9 +18,9 @@ export default class LandingScreen extends Component {
             <Button
              onPressButton={this.signIn} 
              title="Sign in" 
-             style={{width:300,borderRadius:8,backgroundColor:'#00bfff'}}
+             style={{width:200,borderRadius:8,backgroundColor:'#00bfff'}}
              />
-            <Button 
+            <Button
              onPressButton={this.signUp} 
              title="Sign up" 
              style={{width:300,borderRadius:8}}
