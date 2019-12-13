@@ -1,7 +1,13 @@
-import React,{Component} from 'react';
-import { StyleSheet, Text, View ,FlatList,ActivityIndicator} from 'react-native';
-import RecipeItem from '../components/RecipeItem';
-import { TextInput } from 'react-native-gesture-handler';
+import React, { Component } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  ActivityIndicator
+} from "react-native";
+import RecipeItem from "../components/RecipeItem";
+import { TextInput } from "react-native-gesture-handler";
 
 /*
 const DATA = [
@@ -108,96 +114,104 @@ const DATA = [
 	
 ];
 */
-export default class HomeScreen extends Component{
-    static navigationOptions ={ 
-        title :'Recipe List'
-	};
-	constructor(props){
-		super(props);
-		this.state ={
-			loading :true,
-			data : null,
-			searchTerm : ''
-		}
-	}
-	componentDidMount(){
-		fetch('https://www.food2fork.com/api/search?key=b8a8cac975085b642a79083fd8e83a56')
-		.then(response =>response.json())
-		.then(responseJson =>{
-			this.setState({
-				loading:false,
-				data: responseJson
-			});
-			this.arrayHolder = responseJson.recipes;
-		});
-		
-	}
+export default class HomeScreen extends Component {
+  static navigationOptions = {
+    title: "Recipe List"
+  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      data: null,
+      searchTerm: ""
+    };
+  }
+  componentDidMount() {
+    fetch(
+      "https://www.food2fork.com/api/search?key=b8a8cac975085b642a79083fd8e83a56"
+    )
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          loading: false,
+          data: responseJson
+        });
+        this.arrayHolder = responseJson.recipes;
+      });
+  }
 
-	renderRecipeItem =({ item,index}) =>{
-		const {navigation} = this.props;
-		return(
-			<RecipeItem navigation={navigation} item={item}/>
-		);
-	}
+  renderRecipeItem = ({ item, index }) => {
+    const { navigation } = this.props;
+    return <RecipeItem navigation={navigation} item={item} />;
+  };
 
-	searchFilter = (text) =>{
-		this.setState({
-			searchTerm: text
-		});
+  searchFilter = text => {
+    this.setState({
+      searchTerm: text
+    });
 
-		const filteredData = this.arrayHolder.filter(item =>{
-			let title = item.title.toUpperCase();
-			let userTypedData = text.toUpperCase();
+    const filteredData = this.arrayHolder.filter(item => {
+      let title = item.title.toUpperCase();
+      let userTypedData = text.toUpperCase();
 
-			return title.indexOf(userTypedData) > -1
-		})
-		let newData = {
-			count:filteredData.length,
-			recipes:filteredData
-		} 
-		this.setState({
-			data : newData
-		})
-	}
-    render(){
-		const {loading,data} = this.state;
-		if(loading){
-			return(
-				<View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-					<ActivityIndicator size="large" color="orange"/>
-				</View>
-			)
-		}
-        return(
-            <View >
-                <FlatList
-                    data ={ data.recipes}
-                    renderItem ={this.renderRecipeItem}
-                    keyExtractor={(item,index)=>item.recipe_id}
-					contentContainerStyle={{marginTop:20}}
-					ListHeaderComponent={
-						<View >
-							<Text style={{padding:23,fontSize:17,fontWeight:'bold',fontStyle:'italic'}}>
-								Explore {data.count} Recipes...
-							</Text>
-							<TextInput
-								style = {{
-									height:40,
-									borderColor:'orange',
-									borderWidth: 1,
-									marginBottom:20,
-									marginHorizontal:25,
-									paddingLeft :15
-								}}
-								placeholder = "SEARCH..."
-								onChangeText = {text =>{
-									this.searchFilter(text)
-								}}
-							/>
-						</View>
-					}
-                />
-            </View>
-        )
+      return title.indexOf(userTypedData) > -1;
+    });
+    let newData = {
+      count: filteredData.length,
+      recipes: filteredData
+    };
+    this.setState({
+      data: newData
+    });
+  };
+  render() {
+    const { loading, data } = this.state;
+    if (loading) {
+      return (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <ActivityIndicator size="large" color="orange" />
+        </View>
+      );
     }
+    return (
+      <View>
+        <FlatList
+          data={data.recipes}
+          renderItem={this.renderRecipeItem}
+          keyExtractor={(item, index) => item.recipe_id}
+          contentContainerStyle={{ marginTop: 20 }}
+          ListHeaderComponent={
+            <View>
+              <Text
+                style={{
+                  padding: 23,
+                  fontSize: 17,
+                  fontWeight: "bold",
+                  fontStyle: "italic"
+                }}
+              >
+                Explore {data.count} Recipes...
+              </Text>
+              <TextInput
+                style={{
+                  height: 40,
+                  borderColor: "orange",
+                  borderWidth: 1,
+                  marginBottom: 20,
+                  marginHorizontal: 25,
+                  paddingLeft: 15
+                }}
+                placeholder="SEARCH..."
+                onChangeText={text => {
+                  this.searchFilter(text);
+                }}
+              />
+            </View>
+          }
+        />
+      </View>
+    );
+  }
 }
