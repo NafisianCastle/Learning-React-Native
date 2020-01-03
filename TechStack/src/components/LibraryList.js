@@ -1,12 +1,19 @@
-import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import React, { Component } from "react";
+import { Text, View, FlatList } from "react-native";
+import connect from "react-redux";
+import LibraryList from './LibraryList';
 
-export default class LibraryList extends Component {
+class class LibraryList extends Component {
   render() {
-    return (
-      <View>
-        <Text> LibraryList</Text>
-      </View>
-    )
+    console.log('GLOBAL STATE LIBRARY LIST',this.props.LibraryList);
+    return <FlatList data />;
   }
 }
+
+const mapStateToProps = state =>{
+  return{
+    LibraryList: state.libraries
+  }
+}
+
+export default connect(mapStateToProps,null)(LibraryList)
